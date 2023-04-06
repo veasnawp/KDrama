@@ -27,82 +27,24 @@
 	<!-- Player -->
 <div id="player"></div>
 <script>
-  data = {
-    controls: true,
-    sharing: false,
-    displaytitle: false,
-    displaydescription: true,
-    abouttext: "Buy Me a Coffee",
-    aboutlink: "@mr_ron168",
+  function getPlaylist(url, key, postName) {
+    if (url) url = url
+    else url = `https://rawcdn.githack.com/veasnawp/KDrama/${key}/archive/datas/${postName}`
 
-    skin: {
-      name: "netflix"
-    },
-    captions: {
-      color: "#FFF",
-      fontSize: 16,
-      backgroundOpacity: 100,
-      edgeStyle: "uniform"
-    },
-
-    playlist: [
-      {
-        title: "kamakh.com",
-        description: "ជួយគាំទ្រវេបសាយដើម www.kamakh.com",
-        image: "https://lh3.googleusercontent.com/-Y6cLNemAJjE/ZCpJbNgQE8I/AAAAAAAACVs/CTWbKVwMjX0uWxiskNla6DcyX3brL_y5ACNcBGAsYHQ/w320/Kamakh.jpg",
-        sources: [
-          {
-            file:
-              "http://bigf.bigo.sg/asia_live/V4s6/0JPbqO.mp4?dl=0",
-            label: "4k"
-          },
-          {
-            file:
-              "http://bigf.bigo.sg/asia_live/V4s6/0JPbqO.mp4",
-            label: "1080p"
-          },
-          {
-            file:
-              "http://bigf.bigo.sg/asia_live/V4s6/0JPbqO.mp4",
-            label: "720p"
-          },
-        {
-            file:
-              "http://bigf.bigo.sg/asia_live/V4s6/0JPbqO.mp4",
-            label: "480p"
-          },
-          {
-            file:
-              "http://bigf.bigo.sg/asia_live/V4s6/0JPbqO.mp4",
-            label: "Auto",
-            default: true
-          }],
-          captions: [
-          {file:"https://res.cloudinary.com/do1zdkwaj/raw/upload/v1680497541/Blood/the%20lak/sakra-en_gb14a5.srt",
-            label: "English",
-            kind: "captions",
-            default: true
-          },
-          {
-          file:"https://res.cloudinary.com/do1zdkwaj/raw/upload/v1680497541/Blood/the%20lak/sakra-km_fso78u.srt",
-            label: "ខ្មែរ",
-            kind: "captions"
-          },
-          {
-          file:"https://res.cloudinary.com/do1zdkwaj/raw/upload/v1680497541/Blood/the%20lak/sakra-th_pd1cc9.srt",
-            label: "Thai",
-            kind: "captions"
-          },
-          { file:"https://res.cloudinary.com/do1zdkwaj/raw/upload/v1680497541/Blood/the%20lak/sakra-id_ftyl4z.srt",
-            label: "Indonesia",
-            kind: "captions"
-          }],
-      }
-    ],
-    advertising: {
-      client: "vast",
-    }
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+        },
+    }).then(response => response.json())
+      .then(response => {
+        let data = response
+        data = JSON.stringify(data)
+        data = JSON.parse(data)
+        return data
+      })
   }
+  const data = getPlaylist("","8ea816ace19d99adf7b9b00da98be423ef2a2559","postname")
   const playerInstance = jwplayer("player").setup(data);
 
 playerInstance.on("ready", function () {
