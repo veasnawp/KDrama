@@ -38,9 +38,10 @@
         },
     }).then(response => response.json())
       .then(response => {
-        let data = response
-        data = JSON.stringify(data)
+        var data = JSON.stringify(response)
         data = JSON.parse(data)
+        console.log(data)
+        console.log(typeof(data))
         return data
       })
   }
