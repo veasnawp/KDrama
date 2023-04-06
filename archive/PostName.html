@@ -40,13 +40,13 @@
       .then(response => {
         var data = JSON.stringify(response)
         data = JSON.parse(data)
-        console.log(data)
-        console.log(typeof(data))
         return data
       })
   }
   const data = getPlaylist("","8ea816ace19d99adf7b9b00da98be423ef2a2559","postname")
-  const playerInstance = jwplayer("player").setup(data);
+  console.log(data)
+	console.log(typeof(data))
+  const playerInstance = jwplayer("player").setup({...data});
 
 playerInstance.on("ready", function () {
   const buttonId = "download-video-button";
