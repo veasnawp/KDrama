@@ -1,10 +1,9 @@
 // sample fetch json url function
 function getPlaylist(url, key, postName) {
-
   if (url) url = url
   else url = `https://rawcdn.githack.com/veasnawp/KDrama/${key}/archive/datas/${postName}`
-  
-  fetch(url, {
+
+  return fetch(url, {
       method: 'GET',
       headers: {
           'Accept': 'application/json',
