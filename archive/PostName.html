@@ -27,6 +27,18 @@
 	<!-- Player -->
 <div id="player"></div>
 <script>
+  function getPlaylist(url, key, postName) {
+    if (url) url = url
+    else url = `https://rawcdn.githack.com/veasnawp/KDrama/${key}/archive/datas/${postName}`
+
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+        },
+    }).then(response => response.json())
+      .then(response => response)
+  }
   const data = getPlaylist("","8ea816ace19d99adf7b9b00da98be423ef2a2559","postname") 
   const playerInstance = jwplayer("player").setup(data);
 
