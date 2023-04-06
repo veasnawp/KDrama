@@ -9,9 +9,5 @@ function getPlaylist(url, key, postName) {
           'Accept': 'application/json',
       },
   }).then(response => response.json())
-    .then(response => {
-      data = response
-      //console.log(data)
-      return data
-    })
+    .then(response => response)
 }
