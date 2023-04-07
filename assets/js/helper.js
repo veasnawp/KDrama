@@ -1,13 +1,7 @@
-// sample fetch json url function
-function getPlaylist(url, key, postName) {
-  if (url) url = url
-  else url = `https://rawcdn.githack.com/veasnawp/KDrama/${key}/archive/datas/${postName}`
-
-  return fetch(url, {
-      method: 'GET',
-      headers: {
-          'Accept': 'application/json',
-      },
-  }).then(response => response.json())
-    .then(response => response)
+// sample decrypted function
+function getText() {
+  const key = [...Array(10).keys()].reverse().join('');
+  const plainText = "U2FsdGVkX18lJVftHqtawtg60cw5IbzckmQ1k20HsJ1EvEpk6Wy9mf+U2SOEBxE39LIIobhVxVlddHkAwdfPkw==";
+  const decrypted = CryptoJS.AES.decrypt(plainText, key);
+  return decrypted.toString(CryptoJS.enc.Utf8)
 }
